@@ -225,7 +225,7 @@ group_by_shipmode_v2 <- function(datasource) {
       sum(metric("l_extendedprice"))
     ),
     granularity = granularity("all"),
-      context=list(useCache=F, populateCache=F, groupByStrategy = 'v2'),
+      context=list(useCache=F, populateCache=F, groupByStrategy = 'v2', typeHints=list(l_quantity="long", l_extendedprice="float")),
       verbose = TRUE,
       benchmark = TRUE
   )

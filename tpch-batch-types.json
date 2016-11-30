@@ -5,7 +5,7 @@
       "type": "hadoop",
       "inputSpec": {
         "type": "static",
-        "paths": "/path/to/lineitem.tbl.*.gz"
+        "paths": "s3n://imply-example-data/tpch-100/lineitem.tbl.*.gz"
       }
     },
     "dataSchema": {
@@ -118,6 +118,9 @@
         "fs.s3.awsAccessKeyId": "...",
         "fs.s3.awsSecretAccessKey": "...",
         "fs.s3.impl": "org.apache.hadoop.fs.s3native.NativeS3FileSystem",
+        "fs.s3n.awsAccessKeyId": "...",
+        "fs.s3n.awsSecretAccessKey": "...",
+        "fs.s3n.impl": "org.apache.hadoop.fs.s3native.NativeS3FileSystem",
         "io.compression.codecs": "org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.BZip2Codec,org.apache.hadoop.io.compress.SnappyCodec",
         "mapreduce.job.user.classpath.first": "true"
       }
