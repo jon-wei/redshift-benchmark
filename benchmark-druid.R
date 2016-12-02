@@ -236,12 +236,12 @@ group_by_top_100_parts_v2 <- function(datasource) {
     url = url,
     dataSource   = datasource,
     intervals    = i,
-    dimensions = list("l_partkey"),
     aggregations = list(
       sum(metric("l_quantity"))
     ),
     granularity = granularity("all"),
-    orderby=list("l_quantity"),
+    dimensions = list("l_partkey"),
+    orderBy=list("l_quantity"),
     limit=100,
     context=list(useCache=F, populateCache=F, groupByStrategy = 'v2', typeHints=list(l_partkey="long")),
     verbose = TRUE,
