@@ -236,8 +236,7 @@ group_by_top_100_parts_v2 <- function(datasource) {
     url = url,
     dataSource   = datasource,
     intervals    = i,
-    metric = "l_quantity",
-    dimension = "l_partkey",
+    dimensions = list("l_partkey"),
     aggregations = list(
       sum(metric("l_quantity"))
     ),
