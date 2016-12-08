@@ -138,6 +138,14 @@ $ R
 > install_github("druid-io/RDruid")
 ```
 
+On Ubuntu:
+* The trusty R version from default ubuntu repos is outdated and doesn't support dependencies needed by 'microbenchmark', get a newer version of R at https://cran.r-project.org/bin/linux/ubuntu/README.html
+
+* Install ubuntu dependencies needed by R packages:
+```
+sudo apt-get install libcurl4-openssl-dev
+```
+
 To run the benchmark script:
 ```
 Rscript ./benchmark-druid.R {BROKER_IP} tpch_lineitem results/tpch_lineitem_druid {iterations}
