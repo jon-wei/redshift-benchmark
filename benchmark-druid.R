@@ -304,6 +304,24 @@ top_100_parts_typed <- function(datasource) {
   )
 }
 
+group_by_top_100_shipmode_v2 <- function(datasource) {
+  druid.query.groupBy(
+    url = url,
+    dataSource   = datasource,
+    intervals    = i,
+    aggregations = list(
+      sum(metric("l_quantity"))
+    ),
+    granularity = granularity("all"),
+    dimensions = list("l_shipmode"),
+    orderBy=list("l_shipmode"),
+    limit=100,
+    context=list(useCache=F, populateCache=F, groupByStrategy = 'v2'),
+    verbose = TRUE,
+    benchmark = TRUE
+  )
+}
+
 #res1 <- microbenchmark(count_star_interval(datasource), times=n)
 #res2 <- microbenchmark(sum_price(datasource), times=n)
 #res3 <- microbenchmark(sum_all(datasource), times=n)
@@ -315,16 +333,18 @@ top_100_parts_typed <- function(datasource) {
 #res9 <- microbenchmark(top_100_commitdate(datasource), times=n)
 # res10 <- microbenchmark(group_by_shipmode(datasource), times=n)
 #res11 <- microbenchmark(group_by_shipmode_v2(datasource), times=n)
-res12 <- microbenchmark(group_by_top_100_parts_v2(datasource), times=n)
-res13 <- microbenchmark(group_by_top_100_parts_v2_pushdown_limit(datasource), times=n)
+#res12 <- microbenchmark(group_by_top_100_parts_v2(datasource), times=n)
+#res13 <- microbenchmark(group_by_top_100_parts_v2_pushdown_limit(datasource), times=n)
 #res14 <- microbenchmark(group_by_top_100_shipmode_v2(datasource), times=n)
 #res13 <- microbenchmark(top_100_parts_typed(datasource), times=n)
+res15 <- microbenchmark(group_by_top_100_shipmode_v2(datasource), times=n)
+
 
 # results <- as.data.frame(rbind(res1, res2, res3, res4, res5, res6, res7, res8, res9, res10, res11))
 #results <- as.data.frame(rbind(res1, res2, res3, res4, res5, res6, res7, res8, res9))
-results <- as.data.frame(rbind(res12, res13))
+#results <- as.data.frame(rbind(res12, res13))
 #results <- as.data.frame(rbind(res14))
-#results <- as.data.frame(rbind(res13))
+results <- as.data.frame(rbind(res15))
 
 results$time <- results$time / 1e9
 results$query <- as.character(sub("\\(.*\\)", replacement="", results$expr))
