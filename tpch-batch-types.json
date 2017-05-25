@@ -48,6 +48,22 @@
           ],
           "dimensionsSpec": {
             "dimensions": [
+              {
+                "type": "long",
+                "name": "l_orderkey"
+              },
+              {
+                "type": "long",
+                "name": "l_partkey"
+              },
+              {
+                "type": "long",
+                "name": "l_suppkey"
+              },
+              {
+                "type": "long",
+                "name": "l_linenumber"
+              },                            
               "l_returnflag",
               "l_linestatus",
               "l_shipdate",
@@ -64,26 +80,6 @@
         {
           "name": "count",
           "type": "count"
-        },
-        {
-          "type": "longSum",
-          "fieldName": "l_orderkey",
-          "name": "l_orderkey"
-        },
-        {
-          "type": "longSum",
-          "fieldName": "l_partkey",
-          "name": "l_partkey"
-        },
-        {
-          "type": "longSum",
-          "fieldName": "l_suppkey",
-          "name": "l_suppkey"
-        },
-        {
-          "type": "longSum",
-          "fieldName": "l_linenumber",
-          "name": "l_linenumber"
         },
         {
           "type": "longSum",
